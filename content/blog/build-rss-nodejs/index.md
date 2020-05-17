@@ -81,34 +81,31 @@ Mỗi folder sẽ có 1 file form và list tương ứng với add new / edit, v
 ![route mrss index](./route-mrss-index.png) 
 
 *dashboard.js*
-![route mrss dashboar](./route-mrss-dashboard.png) 
+![route mrss dashboard](./route-mrss-dashboard.png) 
 
 2 files này đảm nhiệm vai trò là khi người dùng truy cập vào đườnh link http://localhost:6969/mrss thì layout MRSS của mình sẽ hiện ra,
 cùng với rss category và rss source mà mình đã tạo ra trước đó ở phần backend
 
 **2. Box Coin và SJC**
 
-***a. Coin***
+
 
 Cái này thì mình dùng api của coinmarketcap để lấy dữ liệu về, dùng module node-fetch (tương tự như fetch trên web api)
 
-File middleware / getCoin
-![Get Coin](./middleware-getCoin.png) 
+Ở document.onReady, mình thêm 2 hàm getCoin và getSJC
 
-Sau đó thì chèn middle này ở phần route / mrss / index.js thì sẽ truy nhập được res.locals.coinData
+![document ready](./coin_sjc_1.png) 
 
-***b. SJC***
+Ở 2 hàm này thì mình xử lí ajax đẩy vào 2 routes cho server, rồi dùng api (cho getCoin) và xử lý xml (cho SJC) sau đó trả về client
 
-Mình làm tương tự cho SJC, lấy dữ liệu về từ http://www.sjc.com.vn/xml/tygiavang.xml sau đó xữ lí chuỗi xml với package xml2js, lấy 4 items đầu tiên
-từ Hồ Chí Minh
+Hàm get Coin
+![coin at client side](./coin_sjc_2.png) 
 
-File middleware / getSJC
-![Get SJC](./middleware-getSJC.png) 
+Hàm get SJC
+![sjc at client side](./coin_sjc_3.png) 
 
-Sau đó thì ở views / elements / navbar.ejs , mình tạo 2 functions để hiển thị sjc và coin ra trang mrss.
-![Nav cho coin and sjc](./mrss-nav-1a.png) 
-
-![Nav cho coin and sjc](./mrss-sidebar-coin-sjc.png) 
+Routes ở phía server
+![coin and sjc at server side](./coin_sjc_4.png) 
 
 **3. Show Articles**
 
